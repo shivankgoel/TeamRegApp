@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TeamReg</string>
+    <string name="action_settings">Settings</string>
+    <string name="teamNameTextView">Team Name</string>
+    <string name="memberName1TextView">Name 1</string>
+    <string name="memberName2TextView">Name 2</string>
+    <string name="memberName3TextView">Name 3</string>
+    <string name="memberNo1TextView">Entry No.</string>
+    <string name="memberNo2TextView">Entry No.</string>
+    <string name="memberNo3TextView">Entry No.</string>
+    <string name="submitButton">Submit</string>
+</resources>
