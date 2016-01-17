@@ -165,13 +165,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                        if (response.contains("Data")) {
+                            Toast.makeText(MainActivity.this, "Sorry, Registration Failed.", Toast.LENGTH_LONG).show();
+                        }
+                        else if (response.contains("completed")) {
+                            Toast.makeText(MainActivity.this, "Congrats, Registration Successful", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Sorry, Already Registered", Toast.LENGTH_LONG).show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Connection Problem", Toast.LENGTH_LONG).show();
                     }
                 })
         {
