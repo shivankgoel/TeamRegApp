@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private Button submitButton;
+    private FloatingActionButton fab;
 
 
 
@@ -67,17 +68,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEntry3 = (EditText) findViewById(R.id.editTextEntry3);
 
         submitButton = (Button) findViewById(R.id.submitButton);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         submitButton.setOnClickListener(this);
         //setButtonOnClickListeners();
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View coordinatorLayout) {
+                Snackbar.make(coordinatorLayout, "Add 3rd Teammate", Snackbar.LENGTH_SHORT)
+                        .setAction("Approve", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                editTextName3.setVisibility(View.VISIBLE);
+                                editTextEntry3.setVisibility(View.VISIBLE);
+                                fab.hide();
+                            }
+                        })
+                        .show();
             }
         });
     }

@@ -160,7 +160,7 @@
         android:gravity="center_horizontal"
         android:textColor="@color/textcolor"
         android:layout_marginBottom="3dp"
-
+        android:visibility="gone"
         />
 
 
@@ -183,15 +183,15 @@
                 android:gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:textColor="@color/textcolor"
-
+                android:visibility="gone"
                 />
 
             <Button
                 android:background="@drawable/shape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submitButton"
-        android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submitButton"
+                android:id="@+id/submitButton"
                 android:ems="24"
                 android:textSize="25dp"
                 android:textColor="@color/background"
