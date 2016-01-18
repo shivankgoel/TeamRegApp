@@ -77,10 +77,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
+            //CoordinatorLayout enable removing Snack by Right Swap
             public void onClick(View coordinatorLayout) {
-                Snackbar.make(coordinatorLayout, "Add 3rd Teammate", Snackbar.LENGTH_SHORT)
+                Snackbar.make(coordinatorLayout, "Add 3rd Teammate?", Snackbar.LENGTH_SHORT)
                         .setAction("Approve", new View.OnClickListener() {
                             @Override
+                            //to make Text boxes  Available for 3rd Teammate and To hide FAB
                             public void onClick(View v) {
                                 editTextName3.setVisibility(View.VISIBLE);
                                 editTextEntry3.setVisibility(View.VISIBLE);
@@ -114,53 +116,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*private void setButtonOnClickListeners(){
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String teamname = editTextTeamName.getText().toString().trim();
-                final String name1 = editTextName1.getText().toString().trim();
-                final String entry1 = editTextEntry1.getText().toString().trim();
-                final String name2 = editTextName2.getText().toString().trim();
-                final String entry2 = editTextEntry2.getText().toString().trim();
-                final String name3 = editTextName3.getText().toString().trim();
-                final String entry3 = editTextEntry3.getText().toString().trim();
-
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put(TeamName, teamname);
-                        params.put(Name1, name1);
-                        params.put(Name2, name2);
-                        params.put(Name3, name3);
-                        params.put(Entry1, entry1);
-                        params.put(Entry2, entry2);
-                        params.put(Entry3, entry3);
-
-                        return params;
-                    }
-                };
-
-                    RequestQueue requestQueue = Volley.newRequestQueue(this);
-                    requestQueue.add(stringRequest);
-            }
-        });
-    }*/
-
 
     private void registerUser(){
         final String TeamName = editTextTeamName.getText().toString().trim();
@@ -225,6 +180,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-//tuesgf
+//tues
 
 }
