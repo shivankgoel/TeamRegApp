@@ -1,14 +1,20 @@
 package com.example.shivank.teamregistration;
 
 
+import android.annotation.TargetApi;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.shivank.teamregistration.R.string.AboutUsTitle;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String REGISTER_URL = "http://agni.iitd.ernet.in/cop290/assign0/register/";
@@ -45,8 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private Button submitButton;
+    private FloatingActionButton fab;
 
-
+    //private MenuItem aboutus;
 
 
 
@@ -67,17 +76,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEntry3 = (EditText) findViewById(R.id.editTextEntry3);
 
         submitButton = (Button) findViewById(R.id.submitButton);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
 
         submitButton.setOnClickListener(this);
         //setButtonOnClickListeners();
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            //CoordinatorLayout enable removing Snack by Right Swap
+            public void onClick(View coordinatorLayout) {
+                Snackbar.make(coordinatorLayout, "Add 3rd Teammate?", Snackbar.LENGTH_SHORT)
+                        .setAction("Approve", new View.OnClickListener() {
+                            @Override
+                            //to make Text boxes  Available for 3rd Teammate and To hide FAB
+                            public void onClick(View v) {
+                                editTextName3.setVisibility(View.VISIBLE);
+                                editTextEntry3.setVisibility(View.VISIBLE);
+                                fab.hide();
+                            }
+                        })
+                        .show();
             }
         });
     }
@@ -90,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -99,57 +120,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            FragmentManager fm = getFragmentManager();
+            MyDialogFragment dialogFragment = new MyDialogFragment ();
+            dialogFragment.show(fm, "Sample Fragment");
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    /*private void setButtonOnClickListeners(){
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String teamname = editTextTeamName.getText().toString().trim();
-                final String name1 = editTextName1.getText().toString().trim();
-                final String entry1 = editTextEntry1.getText().toString().trim();
-                final String name2 = editTextName2.getText().toString().trim();
-                final String entry2 = editTextEntry2.getText().toString().trim();
-                final String name3 = editTextName3.getText().toString().trim();
-                final String entry3 = editTextEntry3.getText().toString().trim();
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_LONG).show();
-                            }
-                        }) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put(TeamName, teamname);
-                        params.put(Name1, name1);
-                        params.put(Name2, name2);
-                        params.put(Name3, name3);
-                        params.put(Entry1, entry1);
-                        params.put(Entry2, entry2);
-                        params.put(Entry3, entry3);
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class MyDialogFragment extends DialogFragment {
 
-                        return params;
-                    }
-                };
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.diag_fragment, container, false);
+            getDialog().setTitle(AboutUsTitle);
+            return rootView;
+        }
+    }
 
-                    RequestQueue requestQueue = Volley.newRequestQueue(this);
-                    requestQueue.add(stringRequest);
-            }
-        });
-    }*/
+
 
 
     private void registerUser(){
@@ -165,13 +159,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
+                        if (response.contains("Data")) {
+                            Toast.makeText(MainActivity.this, "Sorry, Registration Failed.", Toast.LENGTH_LONG).show();
+                        }
+                        else if (response.contains("completed")) {
+                            Toast.makeText(MainActivity.this, "Congrats, Registration Successful", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(MainActivity.this, "Sorry, Already Registered", Toast.LENGTH_LONG).show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Connection Problem", Toast.LENGTH_LONG).show();
                     }
                 })
         {
@@ -202,11 +204,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == submitButton){
-            registerUser();
-        }
+        if(v == submitButton) registerUser();
     }
 
-
+//tues
 
 }
