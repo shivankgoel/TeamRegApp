@@ -9,4 +9,18 @@
     <string name="memberNo2TextView">Entry No.</string>
     <string name="memberNo3TextView">Entry No.</string>
     <string name="submitButton">Submit</string>
+    <string name="title_activity_main2">Author</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="DismissDiag">Dismiss</string>
+    <string name="AboutUsTitle">About Us</string>
+    <string name="Author">\tTeam: We Rock\n
+        \t\tBipul Kumar\n
+        2014cs50282\n
+        \t\tDeepak Bansal\n
+        2014cs50435\n
+        \t\tShivank Goel\n
+        2014cs10565\n
+    </string>
+    <string name="about_us">About Us</string>
 </resources>

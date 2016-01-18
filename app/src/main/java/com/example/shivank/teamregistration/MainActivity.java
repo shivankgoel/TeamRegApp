@@ -1,14 +1,20 @@
 package com.example.shivank.teamregistration;
 
 
+import android.annotation.TargetApi;
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +28,8 @@ import com.android.volley.toolbox.Volley;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.example.shivank.teamregistration.R.string.AboutUsTitle;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String REGISTER_URL = "http://agni.iitd.ernet.in/cop290/assign0/register/";
@@ -47,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button submitButton;
     private FloatingActionButton fab;
 
-
+    //private MenuItem aboutus;
 
 
 
@@ -102,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -111,11 +120,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            FragmentManager fm = getFragmentManager();
+            MyDialogFragment dialogFragment = new MyDialogFragment ();
+            dialogFragment.show(fm, "Sample Fragment");
+
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static class MyDialogFragment extends DialogFragment {
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.diag_fragment, container, false);
+            getDialog().setTitle(AboutUsTitle);
+            return rootView;
+        }
+    }
+
+
+
 
     private void registerUser(){
         final String TeamName = editTextTeamName.getText().toString().trim();
@@ -175,9 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == submitButton){
-            registerUser();
-        }
+        if(v == submitButton) registerUser();
     }
 
 //tues
