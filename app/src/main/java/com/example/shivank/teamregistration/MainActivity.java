@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button submitButton;
     private FloatingActionButton fab;
-
+//    private FloatingActionButton fab1;
 
 
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         submitButton = (Button) findViewById(R.id.submitButton);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
+//        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
         submitButton.setOnClickListener(this);
         //setButtonOnClickListeners();
 
