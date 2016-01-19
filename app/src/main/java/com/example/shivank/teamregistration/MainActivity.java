@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static final String name2 = "name2";
     public static final String entry2 = "entry2";
     public static final String name3 = "name3";
-    public static final String entry3 = "entry3";
+    public static final String entry3 = "entry3";//
 
 
     private EditText editTextTeamName;
@@ -54,9 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button submitButton;
     private FloatingActionButton fab;
-
-    //private MenuItem aboutus;
-
 
 
 
@@ -77,9 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         submitButton = (Button) findViewById(R.id.submitButton);
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
         submitButton.setOnClickListener(this);
-        //setButtonOnClickListeners();
 
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -179,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             @Override
             protected Map<String, String> getParams () {
-                    Map<String, String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<>();
                     params.put(teamname, TeamName);
                     params.put(entry1, Entry1);
                     params.put(name1, Name1);
@@ -204,9 +199,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if(v == submitButton) registerUser();
+        if(v == submitButton){
+            registerUser();
+        }
     }
 
-//tues
 
 }
