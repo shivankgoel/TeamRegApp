@@ -13,6 +13,19 @@
     tools:showIn="@layout/activity_home__screen"
     android:background="@color/background">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollViewHomeScreen"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,4 +79,9 @@
         android:textColor="@color/white"
         android:onClick="switchscreen"
         />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </RelativeLayout>

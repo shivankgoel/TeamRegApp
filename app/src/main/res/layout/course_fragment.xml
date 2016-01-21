@@ -2,16 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
-    >
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/diagtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Author"
-        android:textSize="25sp"
+        android:text="@string/courseDescription"
+        android:textSize="20dp"
         android:layout_weight="0.50"
         android:layout_gravity="top|left|bottom|center_horizontal|right|start|end"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -23,10 +21,11 @@
         android:clickable="true"
         android:contextClickable="true"
         android:foregroundGravity="fill_horizontal|top|left|bottom|center_vertical|clip_horizontal|center|fill_vertical|clip_vertical|right|center_horizontal|fill"
-        android:background="@drawable/shape6"
+        android:background="@drawable/shape"
         android:textColor="@color/white"
         android:textStyle="italic"
         />
+
 
 
 </LinearLayout>
