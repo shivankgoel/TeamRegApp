@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //CoordinatorLayout enable removing Snack by Right Swap
             public void onClick(View coordinatorLayout) {
                 Snackbar.make(coordinatorLayout, "Add 3rd Teammate?", Snackbar.LENGTH_SHORT)
-                        .setAction("Approve", new View.OnClickListener() {
+                        .setAction("Add", new View.OnClickListener() {
                             @Override
                             //to make Text boxes  Available for 3rd Teammate and To hide FAB
                             public void onClick(View v) {

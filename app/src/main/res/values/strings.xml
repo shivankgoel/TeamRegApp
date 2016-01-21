@@ -14,16 +14,26 @@
     <string name="DismissDiag">Dismiss</string>
     <string name="AboutUsTitle">About Us</string>
     <string name="Author">\tTeam: Friends\n
-        \t\tBipul Kumar\n
-        2014cs50282\n
-        \t\tDeepak Bansal\n
-        2014cs50435\n
-        \t\tShivank Goel\n
-        2014cs10565\n
+        \tBipul Kumar:\n
+        2014CS50282\n
+        \tDeepak Bansal:\n
+        2014CS50435\n
+        \tShivank Goel:\n
+        2014CS10565\n
     </string>
     <string name="about_us">About Us</string>
     <string name="title_activity_home__screen">Home_Screen</string>
-    <string name="home_screen_message">Wanna Register For COP 290 !</string>
+    <string name="home_screen_message">Want To Register For COP 290 !</string>
     <string name="continuebutton">Continue</string>
+    <string name="courseDescription">
+        \tCOP290-Design Practices\n
+        L-T-P => 0-0-6\n
+        Android Development\n
+        Team Size: 3\n
+        Prerequisites:\n
+        COL100 and COL106\n
+        Prof. Vinay Ribeiro
+    </string>
+    <string name="courseDescriptionTittle">Course Description</string>
 
 </resources>
