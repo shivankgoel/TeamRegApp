@@ -7,7 +7,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 
 public class Home_Screen extends AppCompatActivity {
     private FloatingActionButton fab1;
@@ -34,7 +33,12 @@ public class Home_Screen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Course Description", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .setAction("Action", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                            }
+                        }).show();
             }
         });
 
