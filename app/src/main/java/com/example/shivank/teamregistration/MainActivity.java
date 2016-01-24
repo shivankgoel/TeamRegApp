@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
             }
         });
 
@@ -287,17 +288,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == submitButton){
-            if ( checkValidation () )
+            if ( !checkValidation () )
                 registerUser();
-            else
+            else {
                 Toast.makeText(MainActivity.this, "Form Not Valid", Toast.LENGTH_LONG).show();
+
+            }
 
         }
     }
     //Validating Form Data
     private boolean checkValidation() {
         boolean ret = true;
-
         if (!Validation.hasText(editTextTeamName)) ret = false;
         if (!Validation.isName(editTextName1, true)) ret = false;
         if (!Validation.isName(editTextName2, true)) ret = false;

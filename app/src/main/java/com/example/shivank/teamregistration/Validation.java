@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 public class Validation {
     // Regular Expression
     // you can change the expression based on your need
-    private static final String NAME_REGEX = "^[a-z_A-Z ]*$";
-    private static final String ENTRY_REGEX = "^[A-Z0-9]*$";
+    private static final String NAME_REGEX = "[0-9a-zA-Z_ ]+";
+    private static final String ENTRY_REGEX = "[2][0][1][1-5][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9][0-9]";
 
     // Error Messages
     private static final String REQUIRED_MSG = "required";
