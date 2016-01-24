@@ -10,11 +10,17 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.text.TextWatcher; // For instant validation
+import android.text.Editable;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -71,6 +77,86 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextEntry2 = (EditText) findViewById(R.id.editTextEntry2);
         editTextName3 = (EditText) findViewById(R.id.editTextName3);
         editTextEntry3 = (EditText) findViewById(R.id.editTextEntry3);
+
+        // TextWatcher would let us check validation error on the fly
+        editTextTeamName.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.hasText(editTextTeamName);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        editTextName1.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isName(editTextName1, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        editTextEntry1.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isEntryNumber(editTextEntry1, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+
+        editTextName2.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isName(editTextName2, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        editTextEntry2.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isEntryNumber(editTextEntry2, true);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        editTextName3.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isName(editTextName3, false);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        editTextEntry3.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+                Validation.isEntryNumber(editTextEntry3, false);
+            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
 
         submitButton = (Button) findViewById(R.id.submitButton);
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -200,8 +286,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == submitButton){
-            registerUser();
+            if ( checkValidation () )
+                registerUser();
+            else
+                Toast.makeText(MainActivity.this, "Form Not Valid", Toast.LENGTH_LONG).show();
+
         }
+    }
+
+    private boolean checkValidation() {
+        boolean ret = true;
+
+        if (!Validation.hasText(editTextTeamName)) ret = false;
+        if (!Validation.isName(editTextName1, true)) ret = false;
+        if (!Validation.isName(editTextName2, true)) ret = false;
+        if (!Validation.isName(editTextName3, false)) ret = false;
+        if (!Validation.isName(editTextEntry1, true)) ret = false;
+        if (!Validation.isName(editTextEntry2, true)) ret = false;
+        if (!Validation.isName(editTextEntry3, false)) ret = false;
+
+        return ret;
     }
 
 
