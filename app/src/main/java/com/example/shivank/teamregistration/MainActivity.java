@@ -38,8 +38,9 @@ import java.util.Map;
 import static com.example.shivank.teamregistration.R.string.AboutUsTitle;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    //URL where post request is to be sent
     private static final String REGISTER_URL = "http://agni.iitd.ernet.in/cop290/assign0/register/";
-
+    //Object created to use here
     public static final String teamname = "teamname";
     public static final String name1 = "name1";
     public static final String entry1 = "entry1";
@@ -62,14 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FloatingActionButton fab;
 
 
-
+    //Overriding Oncreate function to enable "Submit", "Floating action Button", "TextVarifier" and Sending Field Data to server.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //It will get all the form Inputs/Data
         editTextTeamName = (EditText) findViewById(R.id.editTextTeamName);
         editTextName1 = (EditText) findViewById(R.id.editTextName1);
         editTextEntry1 = (EditText) findViewById(R.id.editTextEntry1);
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fab = (FloatingActionButton) findViewById(R.id.fab);
         submitButton.setOnClickListener(this);
 
-
+        //Floating Button allow adding of Third button by displaying Snack at the bottom of the page.
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-
+    //Dialog Fragment to show About Us on clicking menu_main
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class MyDialogFragment extends DialogFragment {
 
@@ -226,7 +227,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-
+    //To send Data at server and to Handle response Arrived from server
     private void registerUser(){
         final String TeamName = editTextTeamName.getText().toString().trim();
         final String Name1 = editTextName1.getText().toString().trim();
@@ -282,7 +283,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
+    //Click to Submit
     @Override
     public void onClick(View v) {
         if(v == submitButton){
@@ -293,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-
+    //Validating Form Data
     private boolean checkValidation() {
         boolean ret = true;
 
@@ -301,9 +302,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (!Validation.isName(editTextName1, true)) ret = false;
         if (!Validation.isName(editTextName2, true)) ret = false;
         if (!Validation.isName(editTextName3, false)) ret = false;
-        if (!Validation.isName(editTextEntry1, true)) ret = false;
-        if (!Validation.isName(editTextEntry2, true)) ret = false;
-        if (!Validation.isName(editTextEntry3, false)) ret = false;
+        if (!Validation.isEntryNumber(editTextEntry1, true)) ret = false;
+        if (!Validation.isEntryNumber(editTextEntry2, true)) ret = false;
+        if (!Validation.isEntryNumber(editTextEntry3, false)) ret = false;
 
         return ret;
     }

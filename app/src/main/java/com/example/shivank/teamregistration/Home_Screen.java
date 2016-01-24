@@ -18,6 +18,7 @@ import static com.example.shivank.teamregistration.R.string.courseDescriptionTit
 
 public class Home_Screen extends AppCompatActivity {
     private FloatingActionButton fab1;
+    //Go to next Screen on Click
    public void switchscreen(View view){
        Intent intent = new Intent(this, MainActivity.class);
        startActivity(intent);
@@ -25,7 +26,7 @@ public class Home_Screen extends AppCompatActivity {
 
 
 
-
+    //Overriding onCreate function to enable Floating Action Button, Dialog Fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,7 +58,7 @@ public class Home_Screen extends AppCompatActivity {
 
 
     }
-
+    //Dialog Fragment goes here
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class CourseDialogFragment extends DialogFragment {
         @Override
